@@ -156,7 +156,7 @@ dat %>%
 
 ```{r warning=F}
 # fit regression discontinuity model
-model1<-
+model1<-lm(Customer.Spend~Lead.Score+Add.Support+Lead.Score:Add.Support, data=dat)
 ```
 
 ```{r}
@@ -169,6 +169,10 @@ stargazer(model1,type="text",style="aer",
 
 # causal impact is difference in regression lines at cutoff 
 # I(X>Cutoff)+X*I(X>Cutoff)
+model1<-lm(Customer.Spend~Lead.Score+Add.Support+Lead.Score:Add.Support, data=dat)
+coef(model1)
+coef(model1)["Add.SupportTRUE"]+coef(model1)["Lead.Score:Add.SupportTRUE"]*70
+
 
 ```
 
